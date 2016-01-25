@@ -1,7 +1,6 @@
 
 var express = require('express');
 var pg = require('pg');
-var bodyParser = require('body-parser');
 
 var router = express.Router();
 var connectionString = 'postgres://localhost:5432/weekend_five_db';
@@ -52,15 +51,19 @@ router.get('/getAddresses/:id', function(request, response){
     });
 });
 
-router.get('/getOrders/:id', function(request, response){
+router.get('/getOrders/:id/:begindate/:enddate', function(request, response){
     var returnData = [];
 
     var id = request.params.id;
+    var beginDate = request.params.begindate;
+    var endDate = request.params.enddate;
 
 
     pg.connect(connectionString, function(err, client){
 
-        var query = client.query("SELECT * FROM addresses LEFT OUTER JOIN orders ON addresses.address_id = orders.ship_address_id WHERE orders.user_id = " + id);
+        console.log(id, beginDate, endDate);
+
+        var query = client.query("SELECT * FROM addresses LEFT OUTER JOIN orders ON addresses.address_id = orders.ship_address_id WHERE orders.user_id = " + id + " AND order_date BETWEEN '" + beginDate + "' AND '" + endDate + "'");
 
         query.on('row', function(row) {
             returnData.push(row);
@@ -70,6 +73,7 @@ router.get('/getOrders/:id', function(request, response){
         query.on('end', function(){
             client.end();
             return response.json(returnData);
+
 
         });
 
