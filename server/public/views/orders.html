@@ -4,9 +4,9 @@
 
 <ul ng-repeat="purch in orders">
 <li><b>${{purch.amount}}</b></li>
-<li>{{purch.order_date}}</li>
+<li>{{purch.order_date | date}}</li>
 <li>{{purch.address_street}}</li>
 <li>{{purch.address_city}} {{purch.address_state}} {{purch.address_zip}}</li>
 </ul>
 
-<h2 ng-hide="!users" class="ng-hide">Order Total: ${{moneySpent.toFixed(2)}}</h2>
+<h2 ng-hide="!orders" class="ng-hide">Order Total: ${{moneySpent.toFixed(2)}}</h2>
