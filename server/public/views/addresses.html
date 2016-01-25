@@ -1,0 +1,14 @@
+<p>This is the address list for user: <b>{{addresses[0].name}}</b></p>
+
+<p>Click here to see orders: <a href="/orders"><button class="getOrders">Show orders for {{addresses[0].name}}</button></a></p>
+
+
+<ul ng-repeat="add in addresses">
+    <li><b>{{add.address_type}}</b></li>
+    <li>{{add.address_street}}</li>
+    <li>{{add.address_city}}</li>
+    <li>{{add.address_state}}</li>
+</ul>
+
+
+<!--{{addresses}}-->

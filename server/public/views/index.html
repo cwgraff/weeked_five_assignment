@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ordersApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Weekend Order/Address Assignment</title>
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular-route/angular-route.min.js"></script>
+    <script src="assets/scripts/app.min.js"></script>
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <base href="/">
+</head>
+<body ng-controller="MainController">
+    <h1>This is where all the fun will happen!</h1>
+    <button class="getStuff" ng-click="getData()">Get User List!</button>
+
+    <select ng-hide="!users" class="ng-hide" ng-model="idValue">
+        <option value="" disabled>--Select User--</option>
+        <option ng-repeat="name in users" value={{name.id}}>{{name.name}}</option>
+    </select>
+
+    <a href="/addresses"><button ng-hide="!users" class="ng-hide">View Addresses</button></a>
+
+    <div ng-view>
+        <!--swapping html will go here-->
+    </div>
+</body>
+</html>

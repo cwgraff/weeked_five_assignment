@@ -1,0 +1,9 @@
+<h2>Exciting Stuff regarding Orders should be showing up here!</h2>
+
+
+<ul ng-repeat="purch in orders">
+<li><b>${{purch.amount}}</b></li>
+<li>{{purch.order_date.slice(0,10)}}</li>
+<li>{{purch.address_street}}</li>
+<li>{{purch.address_city}} {{address_state}}</li>
+</ul>
